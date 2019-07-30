@@ -18,7 +18,7 @@ public class TimePeriodTest {
     }
 
     @Test
-    public void dateAcontainsDateB() throws ParseException {
+    public void dateAContainsDateB() throws ParseException {
         String startB = "05/05/2019";
         String endB = "30/12/2019";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
@@ -27,7 +27,7 @@ public class TimePeriodTest {
     }
 
     @Test
-    public void dateBcontainsDateA() throws ParseException {
+    public void dateBContainsDateA() throws ParseException {
         String startB = "01/05/2018";
         String endB = "30/12/2020";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
@@ -36,16 +36,16 @@ public class TimePeriodTest {
     }
 
     @Test
-    public void dateBinteractsDateA() throws ParseException {
+    public void dateBEndIntersectsDateA() throws ParseException {
         String startB = "01/05/2018";
-        String endB = "30/12/2019";
+        String endB = "30/10/2019";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
 
         Assert.assertTrue(timePeriodA.overlapsWith(timePeriodB));
     }
 
     @Test
-    public void dateAinteractsDateB() throws ParseException {
+    public void dateBStartIntersectsDateA() throws ParseException {
         String startB = "05/05/2019";
         String endB = "01/01/2020";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
@@ -54,7 +54,7 @@ public class TimePeriodTest {
     }
 
     @Test
-    public void dateAequalsDateB() throws ParseException {
+    public void dateAEqualsDateB() throws ParseException {
         String startB = "01/01/2019";
         String endB = "31/12/2019";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
@@ -63,9 +63,18 @@ public class TimePeriodTest {
     }
 
     @Test
-    public void endOfDateAequalsStartOfDateB() throws ParseException {
+    public void DateAEndEqualsDateBStart() throws ParseException {
         String startB = "31/12/2019";
         String endB = "31/12/2019";
+        timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
+
+        Assert.assertTrue(timePeriodA.overlapsWith(timePeriodB));
+    }
+
+    @Test
+    public void DateAStartEqualsDateBEnd() throws ParseException {
+        String startB = "01/01/2018";
+        String endB = "01/01/2019";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
 
         Assert.assertTrue(timePeriodA.overlapsWith(timePeriodB));
