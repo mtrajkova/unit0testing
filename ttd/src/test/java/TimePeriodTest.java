@@ -7,11 +7,12 @@ import java.text.SimpleDateFormat;
 
 public class TimePeriodTest {
     private TimePeriod timePeriodA;
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat dateFormatter;
     TimePeriod timePeriodB;
 
     @Before
     public void setUp() throws ParseException {
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         String startA = "01/01/2019";
         String endA = "31/12/2019";
         timePeriodA = new TimePeriod(dateFormatter.parse(startA), dateFormatter.parse(endA));
