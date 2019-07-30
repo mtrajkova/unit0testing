@@ -82,7 +82,7 @@ public class TimePeriodTest {
 
     @Test
     public void dateANotOverlappingWithDateB() throws ParseException {
-        String startB = "01/01/2018";
+        String startB = "03/01/2018";
         String endB = "30/10/2018";
         timePeriodB = new TimePeriod(dateFormatter.parse(startB), dateFormatter.parse(endB));
 
