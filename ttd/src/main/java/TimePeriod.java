@@ -26,14 +26,14 @@ public class TimePeriod {
         // testBinteractA()
         if ((this.start.after(period.start))
                 && (this.end.after(period.end))
-                && (isTimePeriodEndBetween(period))) {
+                && (this.start.before(period.end))) {
             return true;
         }
 
         // testAinteractB()
         if ((this.start.before(period.start))
                 && (this.end.before(period.end))
-                && (isTimePeriodStartBetween(period))) {
+                && (this.end.after(period.start))) {
             return true;
         }
 
@@ -55,11 +55,4 @@ public class TimePeriod {
         return false;
     }
 
-    private boolean isTimePeriodEndBetween(TimePeriod timePeriod) {
-        return timePeriod.end.after(this.start) && timePeriod.end.before(this.end);
-    }
-
-    private boolean isTimePeriodStartBetween(TimePeriod timePeriod) {
-        return timePeriod.start.after(this.start) && timePeriod.start.before(this.end);
-    }
 }
