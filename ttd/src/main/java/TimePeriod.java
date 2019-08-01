@@ -48,7 +48,7 @@ public class TimePeriod {
             return true;
         }
 
-        if(this.start.equals(period.end)){
+        if (this.start.equals(period.end)) {
             return true;
         }
 
