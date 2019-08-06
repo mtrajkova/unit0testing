@@ -4,10 +4,13 @@ import com.internship.controllers.exceptions.IncorrectSubjectEntryException;
 import com.internship.controllers.exceptions.NoMentorNameException;
 import com.internship.controllers.exceptions.SubjectNotFoundException;
 import com.internship.model.Subject;
+import com.internship.services.SubjectService;
 import com.internship.services.impl.SubjectServiceImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +30,10 @@ public class MainController {
     public static final String SUBJECT_NOT_FOUND = "Subject Not Found";
     public static final String NO_SUCH_SUBJECT = "No Such Subject";
     public static final String NO_MENTOR_NAME_SPECIFIED = "No mentor name specified";
-    private SubjectServiceImpl subjectService;
+    private SubjectService subjectService;
 
     @Autowired
-    public MainController(SubjectServiceImpl subjectService) {
+    public MainController(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
 
@@ -58,9 +61,9 @@ public class MainController {
         List<Subject> subjects = subjectService.listAll();
 
         Subject subject = subjects.stream()
-            .filter(x -> name.equals(x.getName()))
-            .findAny()
-            .orElse(null);
+                .filter(x -> name.equals(x.getName()))
+                .findAny()
+                .orElse(null);
 
         if (subject == null) {
             throw new SubjectNotFoundException(NO_SUCH_SUBJECT);
@@ -79,8 +82,8 @@ public class MainController {
 
         List<Subject> subjects = subjectService.listAll();
         List<Subject> subjectsByMentor = subjects.stream()
-            .filter(x -> mentorNoSpaces.equalsIgnoreCase(x.getMentor().replace(" ", "")))
-            .collect(Collectors.toList());
+                .filter(x -> mentorNoSpaces.equalsIgnoreCase(x.getMentor().replace(" ", "")))
+                .collect(Collectors.toList());
 
         if (subjectsByMentor == null) {
             return new ArrayList<>();
